@@ -1,0 +1,9 @@
+#BlueJ class context
+comment0.target=NumeroBinario
+comment1.params=valor
+comment1.target=NumeroBinario(int)
+comment2.params=
+comment2.target=void\ act()
+comment3.params=
+comment3.target=void\ borrar()
+numComments=4

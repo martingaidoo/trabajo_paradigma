@@ -1,0 +1,19 @@
+#BlueJ class context
+comment0.target=Pregunta
+comment1.params=
+comment1.target=void\ act()
+comment2.params=posicionAstronauta
+comment2.target=Pregunta(int)
+comment3.params=
+comment3.target=void\ borrar()
+comment4.params=num1\ num2\ posicionAstronauta
+comment4.target=void\ generarTableroDeNumeros(java.lang.String,\ java.lang.String,\ java.lang.String)
+comment5.params=
+comment5.target=void\ procesoPregunta()
+comment6.params=numCasilla\ valorDado\ cadenaEntrada
+comment6.target=int\ preguntar(int,\ int,\ java.lang.String)
+comment7.params=numBinario
+comment7.target=int[]\ guardarBinarioEnUnaFila(java.lang.String)
+comment8.params=digitoNum1\ digitoNum2\ digitoNumC\ digitoOP
+comment8.target=boolean\ verificarRespuestaPorColumnas(int,\ int,\ int,\ int)
+numComments=9
