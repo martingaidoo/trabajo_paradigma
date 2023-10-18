@@ -10,5 +10,4 @@ comment4.params=valor
 comment4.target=void\ setValor(int)
 comment5.params=
 comment5.target=void\ cambiarPosicion()
-comment5.text=\r\n\ El\ metodo\ cambiarPosicion,\ lo\ que\ hara\ es\ conseguir\ el\ objeto\ MyWorld,\ \r\n\ the\ 'Act'\ or\ 'Run'\ button\ gets\ pressed\ in\ the\ environment.\r\n
 numComments=6

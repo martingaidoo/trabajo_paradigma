@@ -12,7 +12,7 @@ public class Astronauta extends Actor
  
     public void act()
     {
-        cambiarPosicion();// Add your action code here.
+        cambiarPosicion();
     }
     
     public int getValor(){
@@ -23,15 +23,10 @@ public class Astronauta extends Actor
         this.valor = valor;
     }
     
-    
-       /**
-     * El metodo cambiarPosicion, lo que hara es conseguir el objeto MyWorld, 
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
     public void cambiarPosicion(){
         if (getWorld() instanceof MyWorld) {
             MyWorld myWorld = (MyWorld) getWorld();
-            Casillero casilla = myWorld.getObjects(Casillero.class).get(valor); // Obtener la instancia de Astronauta
+            Casillero casilla = myWorld.getObjects(Casillero.class).get(valor);  
             setLocation(casilla.getX(),casilla.getY());
             
         }

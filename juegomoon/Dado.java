@@ -26,16 +26,16 @@ public class Dado extends Actor
     public void updateImage()
     {
         if (resultado == 0){
-        GreenfootImage newImage = new GreenfootImage("dado1.jpg");
+        GreenfootImage newImage = new GreenfootImage("dado1.png");
         setImage(newImage);}
         if (resultado == 1){
-        GreenfootImage newImage = new GreenfootImage("dado2.jpg");
+        GreenfootImage newImage = new GreenfootImage("dado2.png");
         setImage(newImage);}
         if (resultado == 2){
-        GreenfootImage newImage = new GreenfootImage("dado3.jpg");
+        GreenfootImage newImage = new GreenfootImage("dado3.png");
         setImage(newImage);} 
         if (resultado == 3){
-        GreenfootImage newImage = new GreenfootImage("dado0.jpg");
+        GreenfootImage newImage = new GreenfootImage("dado0.png");
         setImage(newImage);} 
     }
         

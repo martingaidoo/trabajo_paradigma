@@ -1,11 +1,5 @@
-import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import greenfoot.*; 
 
-/**
- * Write a description of class ColumnaSeleccion here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
- */
 public class ColumnaSeleccion extends Actor
 {
 
@@ -17,8 +11,6 @@ public class ColumnaSeleccion extends Actor
     public void act()
     {
         
-        
-    
     }
     
     public void generarBotones(int direccionX, int direccionY){
