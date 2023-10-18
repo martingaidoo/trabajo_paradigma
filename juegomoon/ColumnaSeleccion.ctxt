@@ -1,9 +1,5 @@
 #BlueJ class context
 comment0.target=ColumnaSeleccion
 comment1.params=
-comment1.target=ColumnaSeleccion()
-comment2.params=
-comment2.target=void\ act()
-comment3.params=direccionX\ direccionY
-comment3.target=void\ generarBotones(int,\ int)
-numComments=4
+comment1.target=void\ act()
+numComments=2

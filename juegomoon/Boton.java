@@ -2,25 +2,14 @@ import greenfoot.*;
 public class Boton extends Actor
 {
     private int valor;
+    private boolean botonClickeado; 
+    private int numColumna; 
     
     public Boton(int valor){
         this.valor = valor; //1 = and  2=or  3=xor  4=nand  5=nor ,
         
-        if (valor == 1){
-            this.setImage("and.png");
-        }
-        if (valor == 2){
-            this.setImage("or.png");
-        }
-        if (valor == 3){
-            this.setImage("xor.png");
-        }
-        if (valor == 4){
-            this.setImage("nand.png");
-        }
-        if (valor == 5){
-            this.setImage("nor.png");
-        }
+        this.setImage("botonesSinSelec/" + valor + ".png");
+        
         
     }
 
@@ -28,6 +17,7 @@ public class Boton extends Actor
     {
         tocar();
         borrar();
+        estado();
        
     }
     
@@ -40,10 +30,23 @@ public class Boton extends Actor
 
     
     public void tocar(){
-        if (Greenfoot.mouseClicked(this)) {
+        if (Greenfoot.mouseClicked(this)){
+            botonClickeado = true;
             
         }
-    
+    }        
+    public void estado(){
+        if (botonClickeado){
+        this.setImage("botonesSelec/" + valor + ".png");
+        }
+        else{
+            this.setImage("botonesSinSelec/" + valor + ".png");
+        }
     }
+    
+    public void setbotonClickeado(){
+        botonClickeado = false;
+    }
+    
     
     }

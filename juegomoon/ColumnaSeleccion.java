@@ -1,24 +1,14 @@
-import greenfoot.*; 
+import greenfoot.*;  
+import java.util.ArrayList;
 
 public class ColumnaSeleccion extends Actor
 {
-
-    public ColumnaSeleccion(){
+    private int seleccion; 
         
-
-    }
     
     public void act()
     {
         
     }
     
-    public void generarBotones(int direccionX, int direccionY){
-        World world = getWorld();
-        world.addObject(new Boton(1), direccionX, direccionY);
-        world.addObject(new Boton(2), direccionX, direccionY+ 60);
-        world.addObject(new Boton(3), direccionX, direccionY+ 120);
-        world.addObject(new Boton(4), direccionX, direccionY+180);
-        world.addObject(new Boton(5), direccionX, direccionY+240);
-    }
 }
