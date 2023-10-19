@@ -101,6 +101,10 @@ public class MyWorld extends World
         showText("Errores: " + errores, 800, 500);
     }
     
+    public void ganaste(){
+        addObject(new Ganaste(), 500, 300);
+    }
+    
     private void scrollFondo()
     {
         GreenfootImage fondo = getBackground();

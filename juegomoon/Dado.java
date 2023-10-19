@@ -51,7 +51,7 @@ public class Dado extends Actor
             Astronauta astronauta = myWorld.getObjects(Astronauta.class).get(0); // Obtener la instancia de Astronauta
             
             if ((astronauta.getValor() + casillasMoverse)>63){
-                System.out.println("ganaste"); 
+                myWorld.ganaste();
             }else{
                 astronauta.setValor(astronauta.getValor() + casillasMoverse);
             }
