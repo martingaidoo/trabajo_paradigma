@@ -37,17 +37,16 @@ public class Pregunta extends Actor
     public void borrar(){
         if (Greenfoot.isKeyDown("space")){
             MyWorld myworld = (MyWorld) getWorld();
+            Dado dado = myworld.getObjects(Dado.class).get(0);
             resultadoBotones();
             preguntar();
             
-            if (resultado){
-                correctas = correctas + 1;
+            if (!resultado && (Integer.parseInt(posicionAstronauta)-(dado.getResultado()*(-2)))>=0){
+                dado.cambiarPosicion(dado.getResultado()*(-2));
+            }else if(!resultado && (Integer.parseInt(posicionAstronauta)-(dado.getResultado()*(-2)))<0){
+                dado.cambiarPosicion(0);
             }
-            else{errores = errores + 1;}
-            
-            System.out.println(correctas);
-            System.out.println(errores);
-            
+                   
             myworld.removerActor(this); 
         }
             

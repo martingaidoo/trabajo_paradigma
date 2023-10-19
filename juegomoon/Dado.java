@@ -2,7 +2,7 @@ import greenfoot.*;
 
 public class Dado extends Actor
 {
-    private int resultado = 3;
+    private int resultadoDado = 3;
     private boolean teclaPresionada = false;
     
     
@@ -12,12 +12,15 @@ public class Dado extends Actor
 
     public void act()
     {
-        MyWorld myworld = (MyWorld) getWorld();
+        MyWorld myWorld = (MyWorld) getWorld();
+        Astronauta astronauta = myWorld.getObjects(Astronauta.class).get(0);
         
         if (Greenfoot.mouseClicked(this) && (getWorld().getObjects(Pregunta.class).size() == 0)) {
-            resultado = Greenfoot.getRandomNumber(3);
+            resultadoDado = Greenfoot.getRandomNumber(3);
             updateImage();
-            cambiarPosicion();
+            cambiarPosicion(resultadoDado);
+            
+            myWorld.generarPregunta(astronauta.getValor());
             teclaPresionada = true;
         }
     }
@@ -25,29 +28,28 @@ public class Dado extends Actor
     
     public void updateImage()
     {
-        if (resultado == 0){
+        if (resultadoDado == 0){
         GreenfootImage newImage = new GreenfootImage("dado1.png");
         setImage(newImage);}
-        if (resultado == 1){
+        if (resultadoDado == 1){
         GreenfootImage newImage = new GreenfootImage("dado2.png");
         setImage(newImage);}
-        if (resultado == 2){
+        if (resultadoDado == 2){
         GreenfootImage newImage = new GreenfootImage("dado3.png");
         setImage(newImage);} 
-        if (resultado == 3){
+        if (resultadoDado == 3){
         GreenfootImage newImage = new GreenfootImage("dado0.png");
         setImage(newImage);} 
     }
         
 
-    public void cambiarPosicion(){
+    public void cambiarPosicion(int casillasMoverse){
         if (getWorld() instanceof MyWorld) {
             MyWorld myWorld = (MyWorld) getWorld();
             Astronauta astronauta = myWorld.getObjects(Astronauta.class).get(0); // Obtener la instancia de Astronauta
-            astronauta.setValor(astronauta.getValor() + resultado + 1);
+            astronauta.setValor(astronauta.getValor() + casillasMoverse + 1);
             
-            MyWorld myworld = (MyWorld) getWorld();
-            myworld.generarPregunta(astronauta.getValor());
+            
             
         }
         
@@ -55,7 +57,7 @@ public class Dado extends Actor
     }
 
     public int getResultado(){
-        return resultado;
+        return resultadoDado;
     }
 
 
