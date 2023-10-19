@@ -3,9 +3,14 @@ import java.util.List;
 public class MyWorld extends World
 {
 
+    private int scrollSpeed = 1;
     public MyWorld()
     {    
         super(1000, 600, 1); 
+        GreenfootImage fondo = new GreenfootImage("fondo.png");
+        setBackground(fondo);
+        Mars mars = new Mars();
+        addObject(mars, 930,300);
         generarTablero();
 
         Astronauta astronauta = new Astronauta();
@@ -17,7 +22,7 @@ public class MyWorld extends World
     }
     
     public void act(){
-    
+        scrollFondo();
     
     }
     
@@ -81,5 +86,20 @@ public class MyWorld extends World
         
        
         
+    }
+    
+    private void scrollFondo()
+    {
+        GreenfootImage fondo = getBackground();
+        int anchoMundo = getWidth();
+        int x = fondo.getWidth() - scrollSpeed;
+        
+        if (x <= 0) {
+            // Reiniciar la posición del fondo
+            x = anchoMundo;
+        }
+        
+        fondo.drawImage(fondo, x, 0);
+        fondo.drawImage(fondo, x - fondo.getWidth(), 0);
     }
 }

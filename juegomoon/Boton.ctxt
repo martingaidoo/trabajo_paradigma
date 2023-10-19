@@ -1,7 +1,7 @@
 #BlueJ class context
 comment0.target=Boton
-comment1.params=valor
-comment1.target=Boton(int)
+comment1.params=valor\ numColumna
+comment1.target=Boton(int,\ int)
 comment2.params=
 comment2.target=void\ act()
 comment3.params=
@@ -11,5 +11,7 @@ comment4.target=void\ tocar()
 comment5.params=
 comment5.target=void\ estado()
 comment6.params=
-comment6.target=void\ setbotonClickeado()
-numComments=7
+comment6.target=boolean\ getBotonClickeado()
+comment7.params=
+comment7.target=void\ setbotonClickeado()
+numComments=8

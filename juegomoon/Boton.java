@@ -3,11 +3,11 @@ public class Boton extends Actor
 {
     private int valor;
     private boolean botonClickeado; 
-    private int numColumna; 
+    private int numColumna;
     
-    public Boton(int valor){
+    public Boton(int valor, int numColumna){
         this.valor = valor; //1 = and  2=or  3=xor  4=nand  5=nor ,
-        
+        this.numColumna = numColumna; // numero de la columna la cual pertenece
         this.setImage("botonesSinSelec/" + valor + ".png");
         
         
@@ -31,6 +31,9 @@ public class Boton extends Actor
     
     public void tocar(){
         if (Greenfoot.mouseClicked(this)){
+            MyWorld myworld = (MyWorld) getWorld();
+            Pregunta pregunta = myworld.getObjects(Pregunta.class).get(0);
+            pregunta.seleccionarBoton(numColumna);
             botonClickeado = true;
             
         }
@@ -44,9 +47,15 @@ public class Boton extends Actor
         }
     }
     
+    
+    
+    public boolean getBotonClickeado(){
+        return botonClickeado;
+    }
+    
+    
     public void setbotonClickeado(){
-        botonClickeado = false;
+        this.botonClickeado = false;
     }
     
-    
-    }
+}
