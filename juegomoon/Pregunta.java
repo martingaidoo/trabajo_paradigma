@@ -12,8 +12,7 @@ public class Pregunta extends Actor
     ArrayList<Boton> columna4;
     ArrayList<Boton> columna5;
     ArrayList<Boton> columna6;
-    int correctas;
-    int errores;
+
     String cadenaNumCasilla;
     int valorDado;
     String cadenaNum1;
@@ -23,8 +22,6 @@ public class Pregunta extends Actor
     public Pregunta(int posicionAstronauta){
         this.posicionAstronauta = Integer.toString(posicionAstronauta);
         resultadoBotones = "000000";
-        correctas = 0;
-        errores = 0;
     }
     
     public void act()
@@ -41,12 +38,9 @@ public class Pregunta extends Actor
             preguntar();
             
             if (resultado){
-                correctas = correctas + 1;
+                myworld.sumarCorrecto();
             }
-            else{errores = errores + 1;}
-            
-            System.out.println(correctas);
-            System.out.println(errores);
+            else{myworld.sumarError();}
             
             myworld.removerActor(this); 
         }
