@@ -7,7 +7,7 @@ public class Astronauta extends Actor
     public Astronauta(){
         nuevaImage.scale(50,50);  
         setImage(nuevaImage);
-        valor = 62;
+        valor = 0;
     }
  
     public void act()

@@ -5,6 +5,8 @@ public class MyWorld extends World
     int correctas;
     int errores;
     private int scrollSpeed = 1;
+    GreenfootSound miSonido = new GreenfootSound("8bit.mp3");
+
     public MyWorld()
     {    
         super(1000, 600, 1); 
@@ -30,8 +32,9 @@ public class MyWorld extends World
     
     public void act(){
         scrollFondo();
-    
+        miSonido.playLoop();
     }
+    
     
     private void generarTablero(){
         int cantCasilleros;
