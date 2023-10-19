@@ -12,28 +12,42 @@ public class Pregunta extends Actor
     ArrayList<Boton> columna4;
     ArrayList<Boton> columna5;
     ArrayList<Boton> columna6;
+    int correctas;
+    int errores;
+    String cadenaNumCasilla;
+    int valorDado;
+    String cadenaNum1;
+    String cadenaNum2;
+    boolean resultado;
     
     public Pregunta(int posicionAstronauta){
         this.posicionAstronauta = Integer.toString(posicionAstronauta);
         resultadoBotones = "000000";
+        correctas = 0;
+        errores = 0;
     }
     
     public void act()
     {
         borrar();
-        responder();
+
     }
     
-    public void responder(){
-        if (Greenfoot.isKeyDown("\n")){
-            resultadoBotones();
-        }
-    }
-
     
     public void borrar(){
         if (Greenfoot.isKeyDown("space")){
             MyWorld myworld = (MyWorld) getWorld();
+            resultadoBotones();
+            preguntar();
+            
+            if (resultado){
+                correctas = correctas + 1;
+            }
+            else{errores = errores + 1;}
+            
+            System.out.println(correctas);
+            System.out.println(errores);
+            
             myworld.removerActor(this); 
         }
             
@@ -275,8 +289,8 @@ public class Pregunta extends Actor
     }
     
     public void procesoPregunta(){
+        
         int numCasilla;
-        String entradaSeleccionada;
         
         MyWorld myworld = (MyWorld) getWorld(); 
         Astronauta astronauta = myworld.getObjects(Astronauta.class).get(0);
@@ -284,30 +298,32 @@ public class Pregunta extends Actor
         
         numCasilla = astronauta.getValor();
         
-        entradaSeleccionada = resultadoBotones;
+        int num1 = Greenfoot.getRandomNumber(numCasilla);
+        int num2 = Greenfoot.getRandomNumber(numCasilla);
         
+        cadenaNumCasilla = String.format("%6s", Integer.toBinaryString(numCasilla)).replace(' ', '0');
         
-        preguntar(numCasilla, dado.getResultado(), entradaSeleccionada);
+        cadenaNum1 = String.format("%6s", Integer.toBinaryString(num1)).replace(' ', '0');
+        
+        cadenaNum2 = String.format("%6s", Integer.toBinaryString(num2)).replace(' ', '0');
+        
+        generarTableroDeNumeros(cadenaNum1,cadenaNum2,cadenaNumCasilla);
+        
+
         
         
     }
     
-    public int preguntar(int numCasilla,int valorDado, String cadenaEntrada) {
+    public int preguntar() {
+        
 
-        
-        String cadenaNumCasilla = String.format("%6s", Integer.toBinaryString(numCasilla)).replace(' ', '0');
-        int num1 = Greenfoot.getRandomNumber(numCasilla);
-        String cadenaNum1 = String.format("%6s", Integer.toBinaryString(num1)).replace(' ', '0');
-        int num2 = Greenfoot.getRandomNumber(numCasilla);
-        String cadenaNum2 = String.format("%6s", Integer.toBinaryString(num2)).replace(' ', '0');
         int dado = valorDado;
-        generarTableroDeNumeros(cadenaNum1,cadenaNum2,cadenaNumCasilla);
-        
+
         int[][] matrizDeOperaciones = new int[4][6];
         matrizDeOperaciones[0] = guardarBinarioEnUnaFila(cadenaNum1);
         matrizDeOperaciones[1] = guardarBinarioEnUnaFila(cadenaNum2);
         matrizDeOperaciones[2] = guardarBinarioEnUnaFila(cadenaNumCasilla);
-        matrizDeOperaciones[3] = guardarBinarioEnUnaFila(cadenaEntrada);
+        matrizDeOperaciones[3] = guardarBinarioEnUnaFila(resultadoBotones);
 
         int i = 0;
         boolean resultadoFinal = true;
@@ -316,7 +332,6 @@ public class Pregunta extends Actor
                     matrizDeOperaciones[2][i], matrizDeOperaciones[3][i]);
             i++;
         }
-
         dado = resultadoFinal ? 1 : -1;
         
         return dado;
@@ -330,39 +345,22 @@ public class Pregunta extends Actor
         return fila;
     }
 
-    public static boolean verificarRespuestaPorColumnas(int digitoNum1, int digitoNum2, int digitoNumC, int digitoOP) {
-        System.out.println(digitoNum1);
-        System.out.println(digitoNum2);
-        System.out.println(digitoNumC);
-        System.out.println(digitoOP);
-        
-        boolean resultado = false;
-        if (digitoOP == 1) {
+    public boolean verificarRespuestaPorColumnas(int digitoNum1, int digitoNum2, int digitoNumC, int digitoOP) {
+        resultado = true;
+        if (digitoOP == 1 && resultado) {
             resultado = (digitoNum1 & digitoNum2) == digitoNumC;
             
-            System.out.println((digitoNum1 & digitoNum2));
-        } else if (digitoOP == 2) {
+        } else if (digitoOP == 2 && resultado) {
             resultado = (digitoNum1 | digitoNum2) == digitoNumC;
-            
-            System.out.println((digitoNum1 | digitoNum2));
-        } else if (digitoOP == 3) {
-            resultado = ((digitoNum1 & ~digitoNum2) | (~digitoNum1 & digitoNum2)) == digitoNumC;
-            
-            System.out.println(((digitoNum1 & ~digitoNum2) | (~digitoNum1 & digitoNum2)));
-        } else if (digitoOP == 4) {
-            resultado = negarBit(digitoNum1 & digitoNum2) == digitoNumC;
-     
-            System.out.println(digitoNum1 & digitoNum2);
-            System.out.println(negarBit(digitoNum1 & digitoNum2));
-            
-        } else if (digitoOP == 5) {
-            resultado = negarBit(digitoNum1 | digitoNum2) == digitoNumC;
-            
-            System.out.println(digitoNum1 | digitoNum2);
-            System.out.println(negarBit(digitoNum1 | digitoNum2));
-        }
         
-        System.out.println(resultado);
+        } else if (digitoOP == 3 && resultado) {
+            resultado = ((digitoNum1 & ~digitoNum2) | (~digitoNum1 & digitoNum2)) == digitoNumC;
+        } else if (digitoOP == 4 && resultado) {
+            resultado = negarBit(digitoNum1 & digitoNum2) == digitoNumC;
+            
+        } else if (digitoOP == 5 && resultado) {
+            resultado = negarBit(digitoNum1 | digitoNum2) == digitoNumC;
+        }
         return resultado;
         
     }
