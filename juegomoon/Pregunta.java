@@ -49,8 +49,6 @@ public class Pregunta extends Actor
         int coordY;
         int punteroDeNumero;
         
-        
-        
         cantDigitos = 1; 
         coordX = 350;
         coordY = 80;
@@ -273,7 +271,7 @@ public class Pregunta extends Actor
             resultadoBotones = resultadoBotones + (i+1);
             }
         }
-        System.out.println(resultadoBotones);
+        
     }
     
     public void procesoPregunta(){
@@ -286,7 +284,7 @@ public class Pregunta extends Actor
         
         numCasilla = astronauta.getValor();
         
-        entradaSeleccionada = "111111";
+        entradaSeleccionada = resultadoBotones;
         
         
         preguntar(numCasilla, dado.getResultado(), entradaSeleccionada);
@@ -295,6 +293,8 @@ public class Pregunta extends Actor
     }
     
     public int preguntar(int numCasilla,int valorDado, String cadenaEntrada) {
+
+        
         String cadenaNumCasilla = String.format("%6s", Integer.toBinaryString(numCasilla)).replace(' ', '0');
         int num1 = Greenfoot.getRandomNumber(numCasilla);
         String cadenaNum1 = String.format("%6s", Integer.toBinaryString(num1)).replace(' ', '0');
@@ -331,19 +331,49 @@ public class Pregunta extends Actor
     }
 
     public static boolean verificarRespuestaPorColumnas(int digitoNum1, int digitoNum2, int digitoNumC, int digitoOP) {
+        System.out.println(digitoNum1);
+        System.out.println(digitoNum2);
+        System.out.println(digitoNumC);
+        System.out.println(digitoOP);
+        
         boolean resultado = false;
         if (digitoOP == 1) {
             resultado = (digitoNum1 & digitoNum2) == digitoNumC;
+            
+            System.out.println((digitoNum1 & digitoNum2));
         } else if (digitoOP == 2) {
             resultado = (digitoNum1 | digitoNum2) == digitoNumC;
+            
+            System.out.println((digitoNum1 | digitoNum2));
         } else if (digitoOP == 3) {
             resultado = ((digitoNum1 & ~digitoNum2) | (~digitoNum1 & digitoNum2)) == digitoNumC;
+            
+            System.out.println(((digitoNum1 & ~digitoNum2) | (~digitoNum1 & digitoNum2)));
         } else if (digitoOP == 4) {
-            resultado = ~(digitoNum1 & digitoNum2) == digitoNumC;
+            resultado = negarBit(digitoNum1 & digitoNum2) == digitoNumC;
+     
+            System.out.println(digitoNum1 & digitoNum2);
+            System.out.println(negarBit(digitoNum1 & digitoNum2));
+            
         } else if (digitoOP == 5) {
-            resultado = ~(digitoNum1 | digitoNum2) == digitoNumC;
+            resultado = negarBit(digitoNum1 | digitoNum2) == digitoNumC;
+            
+            System.out.println(digitoNum1 | digitoNum2);
+            System.out.println(negarBit(digitoNum1 | digitoNum2));
         }
+        
+        System.out.println(resultado);
         return resultado;
+        
     }
+    
+    public static int negarBit(int bit) {
+        if (bit == 0) {
+            return 1;
+        } else {
+            return 0;
+        }  
+    }
+
 }
 
