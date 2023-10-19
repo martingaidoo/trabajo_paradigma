@@ -2,7 +2,7 @@ import greenfoot.*;
 
 public class Dado extends Actor
 {
-    private int resultadoDado = 3;
+    private int resultadoDado = 0;
     private boolean teclaPresionada = false;
     
     
@@ -16,7 +16,7 @@ public class Dado extends Actor
         Astronauta astronauta = myWorld.getObjects(Astronauta.class).get(0);
         
         if (Greenfoot.mouseClicked(this) && (getWorld().getObjects(Pregunta.class).size() == 0)) {
-            resultadoDado = Greenfoot.getRandomNumber(3);
+            resultadoDado = Greenfoot.getRandomNumber(4) ;
             updateImage();
             cambiarPosicion(resultadoDado);
             
@@ -25,35 +25,32 @@ public class Dado extends Actor
         }
     }
     
-    
     public void updateImage()
     {
         if (resultadoDado == 0){
-        GreenfootImage newImage = new GreenfootImage("dado1.png");
-        setImage(newImage);}
+            GreenfootImage newImage = new GreenfootImage("dado0.png");
+            setImage(newImage);
+        }
         if (resultadoDado == 1){
-        GreenfootImage newImage = new GreenfootImage("dado2.png");
-        setImage(newImage);}
+            GreenfootImage newImage = new GreenfootImage("dado1.png");
+            setImage(newImage);
+        }
         if (resultadoDado == 2){
-        GreenfootImage newImage = new GreenfootImage("dado3.png");
-        setImage(newImage);} 
+            GreenfootImage newImage = new GreenfootImage("dado2.png");
+            setImage(newImage);
+        } 
         if (resultadoDado == 3){
-        GreenfootImage newImage = new GreenfootImage("dado0.png");
-        setImage(newImage);} 
+            GreenfootImage newImage = new GreenfootImage("dado3.png");
+            setImage(newImage);
+        } 
     }
         
-
     public void cambiarPosicion(int casillasMoverse){
         if (getWorld() instanceof MyWorld) {
             MyWorld myWorld = (MyWorld) getWorld();
             Astronauta astronauta = myWorld.getObjects(Astronauta.class).get(0); // Obtener la instancia de Astronauta
-            astronauta.setValor(astronauta.getValor() + casillasMoverse + 1);
-            
-            
-            
+            astronauta.setValor(astronauta.getValor() + casillasMoverse);
         }
-        
-
     }
 
     public int getResultado(){

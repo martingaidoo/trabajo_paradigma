@@ -2,22 +2,29 @@ import greenfoot.*;
 import java.util.List;
 public class MyWorld extends World
 {
-
+    int correctas;
+    int errores;
     private int scrollSpeed = 1;
     public MyWorld()
     {    
         super(1000, 600, 1); 
+        correctas = 0;
+        errores = 0;
+        
         GreenfootImage fondo = new GreenfootImage("fondo.png");
         setBackground(fondo);
         Mars mars = new Mars();
         addObject(mars, 930,300);
         generarTablero();
-
+        
         Astronauta astronauta = new Astronauta();
         addObject(astronauta, 38, 325);
         
         Dado dado = new Dado();
         addObject(dado, 870,85);
+        
+        showText("Correctas: " + correctas, 800, 400);
+        showText("Errores: " + errores, 800, 500);
         
     }
     
@@ -81,11 +88,17 @@ public class MyWorld extends World
     public void removerActor(Actor cualquiera){
         removeObject(cualquiera);
     }
+        
+    public void sumarError(){
+        errores = errores + 1;
+        showText("Correctas: " + correctas, 800, 400);
+        showText("Errores: " + errores, 800, 500);
+    }
     
-    public void removeBotones(){
-        
-       
-        
+    public void sumarCorrecto(){
+        correctas = correctas + 1;
+        showText("Correctas: " + correctas, 800, 400);
+        showText("Errores: " + errores, 800, 500);
     }
     
     private void scrollFondo()

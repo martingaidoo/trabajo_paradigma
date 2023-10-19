@@ -43,13 +43,15 @@ public class Pregunta extends Actor
             
             if (!resultado && (Integer.parseInt(posicionAstronauta)-(dado.getResultado()*(-2)))>=0){
                 dado.cambiarPosicion(dado.getResultado()*(-2));
+                myworld.sumarError();
             }else if(!resultado && (Integer.parseInt(posicionAstronauta)-(dado.getResultado()*(-2)))<0){
                 dado.cambiarPosicion(0);
-            }
-                   
+                myworld.sumarError();
+            }else{
+                myworld.sumarCorrecto();
+            }    
             myworld.removerActor(this); 
         }
-            
     }
 
     
